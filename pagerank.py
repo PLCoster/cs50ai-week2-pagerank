@@ -147,7 +147,7 @@ def iterate_pagerank(corpus, damping_factor):
 
     # Initial page_rank gives every page a rank of 1/(num pages in corpus)
     page_ranks = {page_name: init_rank for page_name in corpus}
-    print('Initial Page Rank Sum: ', sum(page_ranks.values()))
+    print('Initial Page Rank Sum: ', round(sum(page_ranks.values()), 4))
     new_ranks = {page_name: None for page_name in corpus}
     max_rank_change = init_rank
 
@@ -158,7 +158,15 @@ def iterate_pagerank(corpus, damping_factor):
         max_rank_change = 0
 
         for page_name in corpus:
-            surf_choice_prob = sum([page_ranks[other_page]/len(corpus[other_page]) for other_page in corpus if page_name in corpus[other_page]])
+            surf_choice_prob = 0
+            for other_page in corpus:
+                # If other page has no links it picks randomly any corpus page:
+                if len(corpus[other_page]) == 0:
+                    surf_choice_prob += page_ranks[other_page] * init_rank
+                # Else if other_page has a link to page_name, it randomly picks from all links on other_page:
+                elif page_name in corpus[other_page]:
+                    surf_choice_prob += page_ranks[other_page] / len(corpus[other_page])
+            # Calculate new page rank
             new_rank = random_choice_prob + (damping_factor * surf_choice_prob)
             new_ranks[page_name] = new_rank
 
@@ -176,7 +184,7 @@ def iterate_pagerank(corpus, damping_factor):
         page_ranks = new_ranks.copy()
 
     print('Iteration took', iterations, 'iterations to converge')
-    print('Sum of iteration page ranks: ', sum(page_ranks.values()))
+    print('Sum of iteration page ranks: ', round(sum(page_ranks.values()), 4))
 
     return page_ranks
 
