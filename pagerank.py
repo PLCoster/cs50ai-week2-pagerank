@@ -5,7 +5,7 @@ import sys
 
 # Damping Factor - probablity that a link is selected from the current page. Otherwise a page from the corpus is switched to at random.
 DAMPING = 0.85
-SAMPLES = 10000
+SAMPLES = 10000000
 
 
 def main():
@@ -123,8 +123,7 @@ def sample_pagerank(corpus, damping_factor, n):
     # Normalise visits using sample number:
     page_ranks = {page_name: (visit_num/n) for page_name, visit_num in visits.items()}
 
-    print('Sum of sample page ranks: ', sum(page_ranks.values()))
-
+    print('Sum of sample page ranks: ', round(sum(page_ranks.values()), 4))
 
     return page_ranks
 
@@ -147,7 +146,6 @@ def iterate_pagerank(corpus, damping_factor):
 
     # Initial page_rank gives every page a rank of 1/(num pages in corpus)
     page_ranks = {page_name: init_rank for page_name in corpus}
-    print('Initial Page Rank Sum: ', round(sum(page_ranks.values()), 4))
     new_ranks = {page_name: None for page_name in corpus}
     max_rank_change = init_rank
 
