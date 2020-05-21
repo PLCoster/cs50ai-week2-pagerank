@@ -20,7 +20,7 @@ One way to calculate the PageRanks of a corpus of webpages is to use a random su
 
 A page's PageRank can also be calculated using the following recursive mathematical expression:
 
-<img src="https://render.githubusercontent.com/render/math?math=PR(p) = \frac{1-d}{N} \:+ \:d \sum_{i} \frac{PR(i)}{NumLinks(i)}">
+![PR(p) = \frac{1-d}{N} \:+ \:d \sum_{i} \frac{PR(i)}{NumLinks(i)}](https://render.githubusercontent.com/render/math?math=PR(p)%20%3D%20%5Cfrac%7B1-d%7D%7BN%7D%20%5C%3A%2B%20%5C%3Ad%20%5Csum_%7Bi%7D%20%5Cfrac%7BPR(i)%7D%7BNumLinks(i)%7D)
 
 where:
 * PR(p) is the PageRank of a given page p
