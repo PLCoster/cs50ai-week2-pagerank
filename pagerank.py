@@ -5,7 +5,7 @@ import sys
 
 # Damping Factor - probablity that a link is selected from the current page. Otherwise a page from the corpus is switched to at random.
 DAMPING = 0.85
-SAMPLES = 10000000
+SAMPLES = 10000
 
 
 def main():
